@@ -3,4 +3,5 @@
     <string name="nbOfDaysWorkedTitle">Nombre de jours travaillés</string>
     <string name="tjmTitle">TJM</string>
     <string name="totalTitle">Total :</string>
+    <string name="addOneDayButtonText">Add one day</string>
 </resources>

@@ -7,11 +7,17 @@ import androidx.lifecycle.ViewModel
 
 class MainViewModel : ViewModel() {
     fun setNumberOfDays(nbOfDays: Int) {
-        _nbOfDays.value = nbOfDays
+        // Update only if the value is different
+        if (_nbOfDays.value != nbOfDays)
+            _nbOfDays.value = nbOfDays
     }
 
     fun setTjm(tjm: Int) {
         _tjm.value = tjm
+    }
+
+    fun addOneDayClicked() {
+        _nbOfDays.value = (_nbOfDays.value ?: 0) + 1
     }
 
     private val _nbOfDays = MutableLiveData<Int>()

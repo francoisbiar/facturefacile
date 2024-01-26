@@ -5,6 +5,7 @@ import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -36,6 +37,7 @@ class MainFragment : Fragment() {
         val nbOfDaysEditText = view.findViewById<EditText>(R.id.nbOfDaysEditText)
         val tjmEditText = view.findViewById<EditText>(R.id.tjmEditText)
         val totalTextView = view.findViewById<TextView>(R.id.totalTextView)
+        val addDayButton = view.findViewById<Button>(R.id.addOneDayButton)
 
         nbOfDaysEditText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
@@ -43,11 +45,10 @@ class MainFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                viewModel.setNumberOfDays(s.toString().toIntOrNull() ?: 0)
             }
 
             override fun afterTextChanged(s: android.text.Editable?) {
-                // Nothing to do here
+                viewModel.setNumberOfDays(s.toString().toIntOrNull() ?: 0)
             }
         })
 
@@ -65,8 +66,16 @@ class MainFragment : Fragment() {
             }
         })
 
+        addDayButton.setOnClickListener {
+            viewModel.addOneDayClicked()
+        }
+
         viewModel.total.observe(viewLifecycleOwner) { total ->
             totalTextView.text = total.toString()
+        }
+
+        viewModel.nbOfDays.observe(viewLifecycleOwner) { nbOfDays ->
+            nbOfDaysEditText.setText(nbOfDays.toString())
         }
     }
 }
