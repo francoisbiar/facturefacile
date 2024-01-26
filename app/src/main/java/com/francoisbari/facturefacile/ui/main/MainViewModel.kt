@@ -32,6 +32,7 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
         val infosToStore = UserInputData(
             nbOfDays = _nbOfDays.value ?: 0, tjm = _tjm.value ?: 0
         )
+        dataPersistence.saveData(infosToStore)
     }
 
     private val _nbOfDays = MutableLiveData<Int>()
