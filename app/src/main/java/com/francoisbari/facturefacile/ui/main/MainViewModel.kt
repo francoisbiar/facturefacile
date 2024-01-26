@@ -4,20 +4,34 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.francoisbari.facturefacile.data.DataPersistence
+import com.francoisbari.facturefacile.data.UserInputData
 
-class MainViewModel : ViewModel() {
+class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() {
+
     fun setNumberOfDays(nbOfDays: Int) {
         // Update only if the value is different
-        if (_nbOfDays.value != nbOfDays)
-            _nbOfDays.value = nbOfDays
+        if (_nbOfDays.value != nbOfDays) _nbOfDays.value = nbOfDays
     }
 
     fun setTjm(tjm: Int) {
-        _tjm.value = tjm
+        if (_tjm.value != tjm) _tjm.value = tjm
     }
 
     fun addOneDayClicked() {
         _nbOfDays.value = (_nbOfDays.value ?: 0) + 1
+    }
+
+    fun loadData() {
+        val storedInfos = dataPersistence.loadData()
+        _nbOfDays.value = storedInfos.nbOfDays
+        _tjm.value = storedInfos.tjm
+    }
+
+    fun saveData() {
+        val infosToStore = UserInputData(
+            nbOfDays = _nbOfDays.value ?: 0, tjm = _tjm.value ?: 0
+        )
     }
 
     private val _nbOfDays = MutableLiveData<Int>()

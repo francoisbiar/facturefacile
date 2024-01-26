@@ -11,6 +11,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.francoisbari.facturefacile.R
+import com.francoisbari.facturefacile.data.DataPersistenceFactory
 
 class MainFragment : Fragment() {
 
@@ -22,7 +23,17 @@ class MainFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[MainViewModel::class.java]
+
+        val dataPersistence = DataPersistenceFactory.create(
+            requireContext(), DataPersistenceFactory.DataPersistenceType.SHARED_PREFERENCES
+        )
+        val viewModelFactory = MainViewModelFactory(dataPersistence)
+        viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
+    }
+
+    override fun onPause() {
+        super.onPause()
+        viewModel.saveData()
     }
 
     override fun onCreateView(
@@ -58,11 +69,11 @@ class MainFragment : Fragment() {
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                viewModel.setTjm(s.toString().toIntOrNull() ?: 0)
+                // Nothing to do here
             }
 
             override fun afterTextChanged(s: android.text.Editable?) {
-                // Nothing to do here
+                viewModel.setTjm(s.toString().toIntOrNull() ?: 0)
             }
         })
 
@@ -77,5 +88,11 @@ class MainFragment : Fragment() {
         viewModel.nbOfDays.observe(viewLifecycleOwner) { nbOfDays ->
             nbOfDaysEditText.setText(nbOfDays.toString())
         }
+
+        viewModel.tjm.observe(viewLifecycleOwner) { tjm ->
+            tjmEditText.setText(tjm.toString())
+        }
+
+        viewModel.loadData()
     }
 }
