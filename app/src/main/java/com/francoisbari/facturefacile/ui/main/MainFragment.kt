@@ -24,7 +24,7 @@ class MainFragment : Fragment() {
         super.onCreate(savedInstanceState)
 
         val dataPersistence = DataPersistenceFactory.create(
-            requireContext(), DataPersistenceFactory.DataPersistenceType.SHARED_PREFERENCES
+            requireContext(), DataPersistenceFactory.DataPersistenceType.FIRESTORE
         )
         val viewModelFactory = MainViewModelFactory(dataPersistence)
         viewModel = ViewModelProvider(this, viewModelFactory)[MainViewModel::class.java]
