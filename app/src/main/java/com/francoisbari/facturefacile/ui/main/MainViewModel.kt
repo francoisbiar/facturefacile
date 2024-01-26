@@ -4,8 +4,10 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.francoisbari.facturefacile.data.DataPersistence
 import com.francoisbari.facturefacile.data.UserInputData
+import kotlinx.coroutines.launch
 
 class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() {
 
@@ -23,16 +25,18 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
     }
 
     fun loadData() {
-        val storedInfos = dataPersistence.loadData()
-        _nbOfDays.value = storedInfos.nbOfDays
-        _tjm.value = storedInfos.tjm
+        viewModelScope.launch {
+            val storedInfos = dataPersistence.loadData()
+            _nbOfDays.postValue(storedInfos.nbOfDays)
+            _tjm.postValue(storedInfos.tjm)
+        }
     }
 
     fun saveData() {
         val infosToStore = UserInputData(
             nbOfDays = _nbOfDays.value ?: 0, tjm = _tjm.value ?: 0
         )
-        dataPersistence.saveData(infosToStore)
+        viewModelScope.launch { dataPersistence.saveData(infosToStore) }
     }
 
     private val _nbOfDays = MutableLiveData<Int>()

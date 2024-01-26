@@ -6,11 +6,11 @@ import com.francoisbari.facturefacile.data.UserInputData
 
 class RoomDataPersistence(context: Context) :
     DataPersistence {
-    override fun loadData(): UserInputData {
+    override suspend fun loadData(): UserInputData {
         TODO("Not yet implemented")
     }
 
-    override fun saveData(userInputData: UserInputData) {
+    override suspend fun saveData(userInputData: UserInputData) {
         TODO("Not yet implemented")
     }
 
