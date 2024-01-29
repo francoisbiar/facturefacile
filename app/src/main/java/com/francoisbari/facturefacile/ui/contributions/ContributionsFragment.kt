@@ -5,20 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
 import com.francoisbari.facturefacile.databinding.FragmentContributionsBinding
-import com.francoisbari.facturefacile.viewmodels.ContributionsViewModel
+import com.francoisbari.facturefacile.viewmodels.MainViewModel
 
 class ContributionsFragment : Fragment() {
 
-    private lateinit var viewModel: ContributionsViewModel
+    private val viewModel: MainViewModel by viewModels({ requireParentFragment() })
     private var _binding: FragmentContributionsBinding? = null
     private val binding get() = _binding!!
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        viewModel = ViewModelProvider(this)[ContributionsViewModel::class.java]
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?

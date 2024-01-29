@@ -16,6 +16,7 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
     val tjmLiveData = MutableLiveData<String>()
     private val _computeContributionsClicked = MutableLiveData<Boolean>()
     val computeContributionsLiveData: LiveData<Boolean> = _computeContributionsClicked
+    val totalContributionsLiveData = MutableLiveData<Int>()
 
     fun addOneDayClicked() {
         val currentDays = nbOfDaysLiveData.value?.toIntOrNull() ?: 0
@@ -54,5 +55,8 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
     fun computeContributionsClicked() {
         if (nbOfDaysLiveData.value.isNullOrBlank() || tjmLiveData.value.isNullOrBlank()) return
         _computeContributionsClicked.value = true
+        val totalEarned = totalLiveData.value ?: 0
+        val totalContributions = totalEarned * 0.22 // TODO
+        totalContributionsLiveData.value = totalContributions.toInt()
     }
 }
