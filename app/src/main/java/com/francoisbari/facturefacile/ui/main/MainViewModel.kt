@@ -11,42 +11,40 @@ import kotlinx.coroutines.launch
 
 class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() {
 
-    fun setNumberOfDays(nbOfDays: Int) {
-        // Update only if the value is different
-        if (_nbOfDays.value != nbOfDays) _nbOfDays.value = nbOfDays
-    }
-
-    fun setTjm(tjm: Int) {
-        if (_tjm.value != tjm) _tjm.value = tjm
-    }
+    val nbOfDaysLiveData = MutableLiveData<String>()
+    val tjmLiveData = MutableLiveData<String>()
 
     fun addOneDayClicked() {
-        _nbOfDays.value = (_nbOfDays.value ?: 0) + 1
+        val currentDays = nbOfDaysLiveData.value?.toIntOrNull() ?: 0
+        nbOfDaysLiveData.value = (currentDays + 1).toString()
     }
 
     fun loadData() {
         viewModelScope.launch {
             val storedInfos = dataPersistence.loadData()
-            _nbOfDays.postValue(storedInfos.nbOfDays)
-            _tjm.postValue(storedInfos.tjm)
+            nbOfDaysLiveData.postValue(storedInfos.nbOfDays.toString())
+            tjmLiveData.postValue(storedInfos.tjm.toString())
         }
     }
 
     fun saveData() {
         val infosToStore = UserInputData(
-            nbOfDays = _nbOfDays.value ?: 0, tjm = _tjm.value ?: 0
+            nbOfDays = nbOfDaysLiveData.value?.toIntOrNull() ?: 0,
+            tjm = tjmLiveData.value?.toIntOrNull() ?: 0
         )
         viewModelScope.launch { dataPersistence.saveData(infosToStore) }
     }
 
-    private val _nbOfDays = MutableLiveData<Int>()
-    val nbOfDays: LiveData<Int> = _nbOfDays
 
-    private val _tjm = MutableLiveData<Int>()
-    val tjm: LiveData<Int> = _tjm
+    val totalLiveData: LiveData<Int> = MediatorLiveData<Int>().apply {
+        addSource(nbOfDaysLiveData) { value = computeTotal() }
+        addSource(tjmLiveData) { value = computeTotal() }
 
-    val total: LiveData<Int> = MediatorLiveData<Int>().apply {
-        addSource(_nbOfDays) { value = it * (_tjm.value ?: 0) }
-        addSource(_tjm) { value = it * (_nbOfDays.value ?: 0) }
+    }
+
+    private fun computeTotal(): Int {
+        val nbOfDays = nbOfDaysLiveData.value?.toIntOrNull() ?: 0
+        val tjm = tjmLiveData.value?.toIntOrNull() ?: 0
+        return nbOfDays * tjm
     }
 }

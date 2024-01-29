@@ -1,7 +1,6 @@
 package com.francoisbari.facturefacile.ui.main
 
 import android.os.Bundle
-import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,69 +38,14 @@ class MainFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = this
+        binding.viewModel = viewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-        binding.apply {
-            nbOfDaysEditText.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                    // Nothing to do here
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                }
-
-                override fun afterTextChanged(s: android.text.Editable?) {
-                    viewModel.setNumberOfDays(s.toString().toIntOrNull() ?: 0)
-                }
-            })
-
-            tjmEditText.addTextChangedListener(object : TextWatcher {
-                override fun beforeTextChanged(
-                    s: CharSequence?,
-                    start: Int,
-                    count: Int,
-                    after: Int
-                ) {
-                    // Nothing to do here
-                }
-
-                override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                    // Nothing to do here
-                }
-
-                override fun afterTextChanged(s: android.text.Editable?) {
-                    viewModel.setTjm(s.toString().toIntOrNull() ?: 0)
-                }
-            })
-
-            addOneDayButton.setOnClickListener {
-                viewModel.addOneDayClicked()
-            }
-
-            viewModel.total.observe(viewLifecycleOwner) { total ->
-                totalTextView.text = total.toString()
-            }
-
-            viewModel.nbOfDays.observe(viewLifecycleOwner) { nbOfDays ->
-                nbOfDaysEditText.setText(nbOfDays.toString())
-            }
-
-            viewModel.tjm.observe(viewLifecycleOwner) { tjm ->
-                tjmEditText.setText(tjm.toString())
-            }
-
-            viewModel.loadData()
-
-        }
+        viewModel.loadData()
     }
 
     override fun onDestroyView() {
