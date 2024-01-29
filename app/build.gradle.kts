@@ -53,7 +53,16 @@ dependencies {
     // Material 3
     implementation("com.google.android.material:material:1.11.0")
 
+    // For Room integration
+    val roomVersion = "2.6.1"
+    implementation("androidx.room:room-runtime:$roomVersion")
+    annotationProcessor("androidx.room:room-compiler:$roomVersion")
+    kapt("androidx.room:room-compiler:$roomVersion")
+
+    // Coroutines
     implementation("androidx.core:core-ktx:1.12.0")
+
+    // Standard libraries
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")

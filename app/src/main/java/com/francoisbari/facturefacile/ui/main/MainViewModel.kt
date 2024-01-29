@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.francoisbari.facturefacile.data.DataPersistence
 import com.francoisbari.facturefacile.data.UserInputData
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() {
@@ -20,7 +21,7 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
     }
 
     fun loadData() {
-        viewModelScope.launch {
+        viewModelScope.launch(Dispatchers.IO) {
             val storedInfos = dataPersistence.loadData()
             nbOfDaysLiveData.postValue(storedInfos.nbOfDays.toString())
             tjmLiveData.postValue(storedInfos.tjm.toString())
@@ -32,7 +33,7 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
             nbOfDays = nbOfDaysLiveData.value?.toIntOrNull() ?: 0,
             tjm = tjmLiveData.value?.toIntOrNull() ?: 0
         )
-        viewModelScope.launch { dataPersistence.saveData(infosToStore) }
+        viewModelScope.launch(Dispatchers.IO) { dataPersistence.saveData(infosToStore) }
     }
 
 

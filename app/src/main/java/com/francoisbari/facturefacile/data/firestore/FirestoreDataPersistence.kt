@@ -1,6 +1,8 @@
-package com.francoisbari.facturefacile.data
+package com.francoisbari.facturefacile.data.firestore
 
 import android.util.Log
+import com.francoisbari.facturefacile.data.DataPersistence
+import com.francoisbari.facturefacile.data.UserInputData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.tasks.await

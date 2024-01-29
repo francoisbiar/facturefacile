@@ -1,6 +1,7 @@
 package com.francoisbari.facturefacile.data
 
 import android.content.Context
+import com.francoisbari.facturefacile.data.firestore.FirestoreDataPersistence
 import com.francoisbari.facturefacile.data.room.RoomDataPersistence
 import com.francoisbari.facturefacile.data.sharedprefs.SharedPreferencesDataPersistence
 import com.google.firebase.Firebase
