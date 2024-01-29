@@ -2,6 +2,6 @@
     <string name="app_name">Facture Facile</string>
     <string name="nbOfDaysWorkedTitle">Nombre de jours travaillés</string>
     <string name="tjmTitle">TJM</string>
-    <string name="totalTitle">Total : %d</string>
-    <string name="addOneDayButtonText">Add one day</string>
+    <string name="totalTitle">Total : %d € HT</string>
+    <string name="addOneDayButtonText">Ajouter un jour</string>
 </resources>

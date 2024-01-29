@@ -20,6 +20,7 @@
             android:id="@+id/linearLayoutNbOfDays"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -41,14 +42,15 @@
                 android:ems="3"
                 android:importantForAutofill="no"
                 android:inputType="numberSigned"
-                android:text="@={viewModel.nbOfDaysLiveData}"
-                android:maxLength="4" />
+                android:maxLength="4"
+                android:text="@={viewModel.nbOfDaysLiveData}" />
         </LinearLayout>
 
         <LinearLayout
             android:id="@+id/linearLayoutTjm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -66,28 +68,31 @@
                 android:id="@+id/tjmEditText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@={viewModel.tjmLiveData}"
                 android:ems="3"
                 android:importantForAutofill="no"
                 android:inputType="numberSigned"
-                android:maxLength="3" />
+                android:maxLength="3"
+                android:text="@={viewModel.tjmLiveData}" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/totalTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_margin="8dp"
             android:text="@{@string/totalTitle(viewModel.totalLiveData)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayoutTjm" />
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutTjm"
+            tools:text="Total: 1334 € HT" />
 
         <Button
             android:id="@+id/addOneDayButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/addOneDayButtonText"
+            android:layout_margin="8dp"
             android:onClick="@{() -> viewModel.addOneDayClicked()}"
+            android:text="@string/addOneDayButtonText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/totalTextView" />
