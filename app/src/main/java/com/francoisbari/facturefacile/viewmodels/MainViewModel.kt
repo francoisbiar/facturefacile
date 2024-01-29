@@ -1,4 +1,4 @@
-package com.francoisbari.facturefacile.ui.main
+package com.francoisbari.facturefacile.viewmodels
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MediatorLiveData
@@ -14,6 +14,8 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
 
     val nbOfDaysLiveData = MutableLiveData<String>()
     val tjmLiveData = MutableLiveData<String>()
+    private val _computeContributionsClicked = MutableLiveData<Boolean>()
+    val computeContributionsLiveData: LiveData<Boolean> = _computeContributionsClicked
 
     fun addOneDayClicked() {
         val currentDays = nbOfDaysLiveData.value?.toIntOrNull() ?: 0
@@ -47,5 +49,10 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
         val nbOfDays = nbOfDaysLiveData.value?.toIntOrNull() ?: 0
         val tjm = tjmLiveData.value?.toIntOrNull() ?: 0
         return nbOfDays * tjm
+    }
+
+    fun computeContributionsClicked() {
+        if (nbOfDaysLiveData.value.isNullOrBlank() || tjmLiveData.value.isNullOrBlank()) return
+        _computeContributionsClicked.value = true
     }
 }

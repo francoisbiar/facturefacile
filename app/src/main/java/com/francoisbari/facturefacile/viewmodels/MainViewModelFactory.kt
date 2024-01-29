@@ -1,4 +1,4 @@
-package com.francoisbari.facturefacile.ui.main
+package com.francoisbari.facturefacile.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
