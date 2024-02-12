@@ -6,4 +6,5 @@
     <string name="addOneDayButtonText">Ajouter un jour</string>
     <string name="total_contributions_d">Total contributions : %d€</string>
     <string name="computeContributionsButtonText">Calculer les cotisations</string>
+    <string name="monthTitle">Mois</string>
 </resources>

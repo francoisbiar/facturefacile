@@ -1,6 +1,7 @@
 package com.francoisbari.facturefacile.data
 
 interface DataPersistence {
-    suspend fun loadData(): UserInputData
-    suspend fun saveData(userInputData: UserInputData)
+    suspend fun loadLatestMonth(): UserInputData?
+    suspend fun saveMonth(userInputDataPerMonth: UserInputData)
+    suspend fun getDataFromMonth(monthId: Int): UserInputData?
 }

@@ -16,6 +16,43 @@
         android:layout_height="match_parent"
         tools:context=".ui.main.MainFragment">
 
+        <TextView
+            android:id="@+id/monthTextView"
+            style="@style/MaterialAlertDialog.Material3.Title.Text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="2024"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayoutMonth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+
+            app:layout_constraintTop_toBottomOf="@id/monthTextView">
+
+            <TextView
+                android:id="@+id/textViewMonthTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/monthTitle" />
+
+            <Spinner
+                android:id="@+id/monthSpinner"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onItemSelected="@{(parent, view, position, id) -> viewModel.selectMonth(parent.getItemAtPosition(position).toString())}" />
+        </LinearLayout>
+
+
         <LinearLayout
             android:id="@+id/linearLayoutNbOfDays"
             android:layout_width="match_parent"
@@ -26,7 +63,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
 
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@id/linearLayoutMonth">
 
             <TextView
                 android:id="@+id/textViewNbOfDaysTitle"

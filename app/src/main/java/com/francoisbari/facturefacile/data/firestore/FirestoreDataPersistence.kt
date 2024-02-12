@@ -9,14 +9,18 @@ import kotlinx.coroutines.tasks.await
 
 class FirestoreDataPersistence(private val db: FirebaseFirestore) : DataPersistence {
 
-    override suspend fun loadData(): UserInputData {
+    override suspend fun loadLatestMonth(): UserInputData {
         Log.d(TAG, "loadData: ")
         val documentSnapshot = db.collection("userInput").document("FBa").get().await()
         return documentSnapshot.toObject<UserInputData>() ?: UserInputData()
     }
 
-    override suspend fun saveData(userInputData: UserInputData) {
-        db.collection("userInput").document("FBa").set(userInputData).await()
+    override suspend fun saveMonth(userInputDataPerMonth: UserInputData) {
+        db.collection("userInput").document("FBa").set(userInputDataPerMonth).await()
+    }
+
+    override suspend fun getDataFromMonth(monthId: Int): UserInputData {
+        TODO("Not yet implemented")
     }
 
     companion object {
