@@ -1,5 +1,6 @@
 package com.francoisbari.facturefacile.data.room
 
+import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
@@ -19,4 +20,7 @@ interface RoomDataDao {
 
     @Update
     fun updateData(userInputEntity: UserInputEntity)
+
+    @Query("SELECT SUM(tjm * nbOfDays) FROM UserInputEntity")
+    fun getYearlyTotal(): LiveData<Int>
 }

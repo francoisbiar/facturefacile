@@ -1,6 +1,7 @@
 package com.francoisbari.facturefacile.data.sharedprefs
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import com.francoisbari.facturefacile.data.DataPersistence
 import com.francoisbari.facturefacile.data.UserInputData
 
@@ -29,6 +30,10 @@ class SharedPreferencesDataPersistence(private val context: Context) : DataPersi
     }
 
     override suspend fun getDataFromMonth(monthId: Int): UserInputData {
+        TODO("Not yet implemented")
+    }
+
+    override fun getYearlyTotalLiveData(): LiveData<Int> {
         TODO("Not yet implemented")
     }
 }

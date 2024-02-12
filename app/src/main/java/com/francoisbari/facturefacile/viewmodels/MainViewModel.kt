@@ -15,18 +15,24 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
 
     val nbOfDaysLiveData = MutableLiveData<String>()
     val tjmLiveData = MutableLiveData<String>()
+    val yearlyTotalLiveData = dataPersistence.getYearlyTotalLiveData()
+
     private var currentMonth = Months.NONE
 
     private val _computeContributionsClicked = MutableLiveData<Boolean>()
     val computeContributionsLiveData: LiveData<Boolean> = _computeContributionsClicked
     val totalContributionsLiveData = MutableLiveData<Int>()
 
+    init {
+        loadData()
+    }
+
     fun addOneDayClicked() {
         val currentDays = nbOfDaysLiveData.value?.toIntOrNull() ?: 0
         nbOfDaysLiveData.value = (currentDays + 1).toString()
     }
 
-    fun loadData() {
+    private fun loadData() {
         viewModelScope.launch(Dispatchers.IO) {
             val storedInfos = dataPersistence.loadLatestMonth() ?: return@launch
             nbOfDaysLiveData.postValue(storedInfos.nbOfDays.toString())
@@ -35,7 +41,7 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
         }
     }
 
-    fun saveData() {
+    private fun saveData() {
         val infosToStore = UserInputData(
             nbOfDays = nbOfDaysLiveData.value?.toIntOrNull() ?: 0,
             tjm = tjmLiveData.value?.toIntOrNull() ?: 0,
@@ -44,11 +50,11 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
         viewModelScope.launch(Dispatchers.IO) { dataPersistence.saveMonth(infosToStore) }
     }
 
-
     val totalLiveData: LiveData<Int> = MediatorLiveData<Int>().apply {
         addSource(nbOfDaysLiveData) { value = computeTotal() }
         addSource(tjmLiveData) { value = computeTotal() }
-
+        // Save the data each time total is computed.
+        addSource(this) { saveData() }
     }
 
     private fun computeTotal(): Int {

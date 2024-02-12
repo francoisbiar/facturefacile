@@ -31,11 +31,6 @@ class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
 
-    override fun onPause() {
-        super.onPause()
-        viewModel.saveData()
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ): View {
@@ -68,11 +63,6 @@ class MainFragment : Fragment() {
         val adapter = ArrayAdapter(requireContext(), android.R.layout.simple_spinner_item, months)
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         binding.monthSpinner.adapter = adapter
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        viewModel.loadData()
     }
 
     override fun onDestroyView() {

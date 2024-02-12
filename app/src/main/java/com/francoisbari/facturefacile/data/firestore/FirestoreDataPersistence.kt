@@ -1,6 +1,7 @@
 package com.francoisbari.facturefacile.data.firestore
 
 import android.util.Log
+import androidx.lifecycle.LiveData
 import com.francoisbari.facturefacile.data.DataPersistence
 import com.francoisbari.facturefacile.data.UserInputData
 import com.google.firebase.firestore.FirebaseFirestore
@@ -20,6 +21,10 @@ class FirestoreDataPersistence(private val db: FirebaseFirestore) : DataPersiste
     }
 
     override suspend fun getDataFromMonth(monthId: Int): UserInputData {
+        TODO("Not yet implemented")
+    }
+
+    override fun getYearlyTotalLiveData(): LiveData<Int> {
         TODO("Not yet implemented")
     }
 

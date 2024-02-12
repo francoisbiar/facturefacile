@@ -15,7 +15,7 @@
         tools:context=".ui.contributions.ContributionsFragment">
 
         <TextView
-            android:id="@+id/totalTextView"
+            android:id="@+id/totalMonthTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@{@string/total_contributions_d(viewModel.totalContributionsLiveData)}"

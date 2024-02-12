@@ -1,6 +1,7 @@
 package com.francoisbari.facturefacile.data.room
 
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
@@ -43,6 +44,10 @@ class RoomDataPersistence(context: Context) : DataPersistence {
         val userInputEntity =
             database.userInputDao().getDataFromMonth(monthId) ?: return UserInputData()
         return userInputEntity.toData()
+    }
+
+    override fun getYearlyTotalLiveData(): LiveData<Int> {
+        return database.userInputDao().getYearlyTotal()
     }
 
     companion object {

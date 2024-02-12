@@ -113,7 +113,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/totalTextView"
+            android:id="@+id/totalMonthTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="8dp"
@@ -122,6 +122,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linearLayoutTjm"
             tools:text="Total: 1334 € HT" />
+
+        <TextView
+            android:id="@+id/grandTotalTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:text="@{@string/grandTotalTitle(viewModel.yearlyTotalLiveData)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/totalMonthTextView"
+            tools:text="Grand Total of the year: 78097 € HT" />
 
         <Button
             android:id="@+id/addOneDayButton"
@@ -133,7 +143,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/computeContributionsButton"
 
-            app:layout_constraintTop_toBottomOf="@id/totalTextView" />
+            app:layout_constraintTop_toBottomOf="@id/grandTotalTextView" />
 
 
         <Button
