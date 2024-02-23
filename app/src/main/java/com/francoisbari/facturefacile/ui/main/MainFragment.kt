@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.francoisbari.facturefacile.CompositionRoot
 import com.francoisbari.facturefacile.persistence.DataPersistenceFactory
 import com.francoisbari.facturefacile.persistence.models.Months
 import com.francoisbari.facturefacile.databinding.FragmentMainBinding
@@ -21,11 +22,7 @@ class MainFragment : Fragment() {
     }
 
     private val viewModel: MainViewModel by viewModels {
-        MainViewModelFactory(
-            DataPersistenceFactory.create(
-                requireContext(), DataPersistenceFactory.DataPersistenceType.ROOM
-            )
-        )
+        CompositionRoot.getMainViewModelFactory()
     }
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
