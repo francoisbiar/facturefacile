@@ -1,7 +1,6 @@
 package com.francoisbari.facturefacile.ui.main
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -39,9 +38,9 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
         viewModel.computeContributionsLiveData.observe(viewLifecycleOwner) {
             if (it) {
-                Log.d("MainFragment", "computeContributionsLiveData")
                 // Show the ContributionsFragment
                 val contributionsFragment = ContributionsFragment.newInstance()
+                binding.contributionsCardView.visibility = View.VISIBLE
                 childFragmentManager.beginTransaction().apply {
                     replace(binding.contributionsContainerView.id, contributionsFragment)
                     addToBackStack(null)

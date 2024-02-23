@@ -21,7 +21,8 @@
             android:text="@{@string/total_contributions_d(viewModel.totalContributionsLiveData)}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Total Contributions for 2024: 78 5076 €" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

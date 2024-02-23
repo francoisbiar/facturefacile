@@ -10,161 +10,175 @@
             type="com.francoisbari.facturefacile.viewmodels.MainViewModel" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/main"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".ui.main.MainFragment">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/monthTextView"
-            style="@style/MaterialAlertDialog.Material3.Title.Text"
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mainContainer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="2024"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <LinearLayout
-            android:id="@+id/linearLayoutMonth"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-
-            app:layout_constraintTop_toBottomOf="@id/monthTextView">
-
-            <TextView
-                android:id="@+id/textViewMonthTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/monthTitle" />
-
-            <Spinner
-                android:id="@+id/monthSpinner"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:onItemSelected="@{(parent, view, position, id) -> viewModel.selectMonth(parent.getItemAtPosition(position).toString())}" />
-        </LinearLayout>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_centerInParent="true"
+            android:layout_margin="8dp">
 
 
-        <LinearLayout
-            android:id="@+id/linearLayoutNbOfDays"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".ui.main.MainFragment">
 
-            app:layout_constraintTop_toBottomOf="@id/linearLayoutMonth">
-
-            <TextView
-                android:id="@+id/textViewNbOfDaysTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/nbOfDaysWorkedTitle" />
-
-            <EditText
-                android:id="@+id/nbOfDaysEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="3"
-                android:importantForAutofill="no"
-                android:inputType="numberSigned"
-                android:maxLength="4"
-                android:text="@={viewModel.nbOfDaysLiveData}" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayoutTjm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:gravity="center"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayoutNbOfDays">
-
-            <TextView
-                android:id="@+id/textViewTjmTitle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/tjmTitle"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <EditText
-                android:id="@+id/tjmEditText"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:ems="3"
-                android:importantForAutofill="no"
-                android:inputType="numberSigned"
-                android:maxLength="3"
-                android:text="@={viewModel.tjmLiveData}" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/totalMonthTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:text="@{@string/totalTitle(viewModel.totalLiveData)}"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linearLayoutTjm"
-            tools:text="Total: 1334 € HT" />
-
-        <TextView
-            android:id="@+id/grandTotalTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:text="@{@string/grandTotalTitle(viewModel.yearlyTotalLiveData)}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/totalMonthTextView"
-            tools:text="Grand Total of the year: 78097 € HT" />
-
-        <Button
-            android:id="@+id/addOneDayButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="8dp"
-            android:onClick="@{() -> viewModel.addOneDayClicked()}"
-            android:text="@string/addOneDayButtonText"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/computeContributionsButton"
-
-            app:layout_constraintTop_toBottomOf="@id/grandTotalTextView" />
+                <TextView
+                    android:id="@+id/monthTextView"
+                    style="@style/MaterialAlertDialog.Material3.Title.Text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="2024"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-        <Button
-            android:id="@+id/computeContributionsButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:onClickListener="@{() -> viewModel.computeContributionsClicked()}"
-            android:text="@string/computeContributionsButtonText"
-            app:layout_constraintBottom_toBottomOf="@+id/addOneDayButton"
-            app:layout_constraintEnd_toStartOf="@id/addOneDayButton"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/addOneDayButton" />
+                <Spinner
+                    android:id="@+id/monthSpinner"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onItemSelected="@{(parent, view, position, id) -> viewModel.selectMonth(parent.getItemAtPosition(position).toString())}"
+                    app:flow_horizontalBias="1.0"
+                    app:layout_constraintBottom_toBottomOf="@id/monthTextView"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toEndOf="@id/monthTextView"
+                    app:layout_constraintTop_toTopOf="@id/monthTextView" />
 
-        <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/contributionsContainerView"
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutNbOfDays"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+
+                    app:layout_constraintTop_toBottomOf="@id/monthTextView">
+
+                    <TextView
+                        android:id="@+id/textViewNbOfDaysTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/nbOfDaysWorkedTitle" />
+
+                    <EditText
+                        android:id="@+id/nbOfDaysEditText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="3"
+                        android:importantForAutofill="no"
+                        android:inputType="numberSigned"
+                        android:maxLength="4"
+                        android:text="@={viewModel.nbOfDaysLiveData}" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearLayoutTjm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:gravity="center"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/linearLayoutNbOfDays">
+
+                    <TextView
+                        android:id="@+id/textViewTjmTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/tjmTitle"
+                        app:layout_constraintStart_toStartOf="parent" />
+
+                    <EditText
+                        android:id="@+id/tjmEditText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ems="3"
+                        android:importantForAutofill="no"
+                        android:inputType="numberSigned"
+                        android:maxLength="3"
+                        android:text="@={viewModel.tjmLiveData}" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/totalMonthTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:text="@{@string/totalTitle(viewModel.totalLiveData)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/linearLayoutTjm"
+                    tools:text="Total: 1334 € HT" />
+
+                <TextView
+                    android:id="@+id/grandTotalTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@{@string/grandTotalTitle(viewModel.yearlyTotalLiveData)}"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/totalMonthTextView"
+                    tools:text="Grand Total of the year: 78097 € HT" />
+
+                <Button
+                    android:id="@+id/addOneDayButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:onClick="@{() -> viewModel.addOneDayClicked()}"
+                    android:text="@string/addOneDayButtonText"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/computeContributionsButton"
+
+                    app:layout_constraintTop_toBottomOf="@id/grandTotalTextView" />
+
+
+                <Button
+                    android:id="@+id/computeContributionsButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:onClickListener="@{() -> viewModel.computeContributionsClicked()}"
+                    android:text="@string/computeContributionsButtonText"
+                    app:layout_constraintBottom_toBottomOf="@+id/addOneDayButton"
+                    app:layout_constraintEnd_toStartOf="@id/addOneDayButton"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/addOneDayButton" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/contributionsCardView"
             android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/addOneDayButton" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mainContainer"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_margin="8dp"
+            android:visibility="gone"
+            tools:visibility="visible">
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <androidx.fragment.app.FragmentContainerView
+                android:id="@+id/contributionsContainerView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:layout="@layout/fragment_contributions" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 </layout>
