@@ -1,9 +1,9 @@
-package com.francoisbari.facturefacile.data.firestore
+package com.francoisbari.facturefacile.persistence.firestore
 
 import android.util.Log
 import androidx.lifecycle.LiveData
-import com.francoisbari.facturefacile.data.DataPersistence
-import com.francoisbari.facturefacile.data.UserInputData
+import com.francoisbari.facturefacile.persistence.DataPersistence
+import com.francoisbari.facturefacile.persistence.UserInputData
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.toObject
 import kotlinx.coroutines.tasks.await

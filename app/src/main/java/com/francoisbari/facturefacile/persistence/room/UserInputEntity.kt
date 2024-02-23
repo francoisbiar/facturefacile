@@ -1,9 +1,9 @@
-package com.francoisbari.facturefacile.data.room
+package com.francoisbari.facturefacile.persistence.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.francoisbari.facturefacile.data.UserInputData
+import com.francoisbari.facturefacile.persistence.UserInputData
 
 @Entity
 data class UserInputEntity(

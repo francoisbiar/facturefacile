@@ -1,4 +1,4 @@
-package com.francoisbari.facturefacile.data
+package com.francoisbari.facturefacile.persistence
 
 import androidx.lifecycle.LiveData
 

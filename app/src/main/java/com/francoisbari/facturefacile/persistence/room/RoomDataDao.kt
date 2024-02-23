@@ -1,4 +1,4 @@
-package com.francoisbari.facturefacile.data.room
+package com.francoisbari.facturefacile.persistence.room
 
 import androidx.lifecycle.LiveData
 import androidx.room.Dao

@@ -1,9 +1,9 @@
-package com.francoisbari.facturefacile.data
+package com.francoisbari.facturefacile.persistence
 
 import android.content.Context
-import com.francoisbari.facturefacile.data.firestore.FirestoreDataPersistence
-import com.francoisbari.facturefacile.data.room.RoomDataPersistence
-import com.francoisbari.facturefacile.data.sharedprefs.SharedPreferencesDataPersistence
+import com.francoisbari.facturefacile.persistence.firestore.FirestoreDataPersistence
+import com.francoisbari.facturefacile.persistence.room.RoomDataPersistence
+import com.francoisbari.facturefacile.persistence.sharedprefs.SharedPreferencesDataPersistence
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 

@@ -2,7 +2,7 @@ package com.francoisbari.facturefacile.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.francoisbari.facturefacile.data.DataPersistence
+import com.francoisbari.facturefacile.persistence.DataPersistence
 
 class MainViewModelFactory(private val dataPersistence: DataPersistence) :
     ViewModelProvider.Factory {

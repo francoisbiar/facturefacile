@@ -5,9 +5,9 @@ import androidx.lifecycle.MediatorLiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.francoisbari.facturefacile.data.DataPersistence
-import com.francoisbari.facturefacile.data.UserInputData
-import com.francoisbari.facturefacile.data.models.Months
+import com.francoisbari.facturefacile.persistence.DataPersistence
+import com.francoisbari.facturefacile.persistence.UserInputData
+import com.francoisbari.facturefacile.persistence.models.Months
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 

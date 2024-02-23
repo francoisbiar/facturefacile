@@ -1,12 +1,12 @@
-package com.francoisbari.facturefacile.data.room
+package com.francoisbari.facturefacile.persistence.room
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Room
 import androidx.room.migration.Migration
 import androidx.sqlite.db.SupportSQLiteDatabase
-import com.francoisbari.facturefacile.data.DataPersistence
-import com.francoisbari.facturefacile.data.UserInputData
+import com.francoisbari.facturefacile.persistence.DataPersistence
+import com.francoisbari.facturefacile.persistence.UserInputData
 
 class RoomDataPersistence(context: Context) : DataPersistence {
     private val database = Room

@@ -1,9 +1,9 @@
-package com.francoisbari.facturefacile.data.sharedprefs
+package com.francoisbari.facturefacile.persistence.sharedprefs
 
 import android.content.Context
 import androidx.lifecycle.LiveData
-import com.francoisbari.facturefacile.data.DataPersistence
-import com.francoisbari.facturefacile.data.UserInputData
+import com.francoisbari.facturefacile.persistence.DataPersistence
+import com.francoisbari.facturefacile.persistence.UserInputData
 
 class SharedPreferencesDataPersistence(private val context: Context) : DataPersistence {
 

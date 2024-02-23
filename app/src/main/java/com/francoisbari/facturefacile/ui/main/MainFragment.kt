@@ -7,8 +7,8 @@ import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.francoisbari.facturefacile.data.DataPersistenceFactory
-import com.francoisbari.facturefacile.data.models.Months
+import com.francoisbari.facturefacile.persistence.DataPersistenceFactory
+import com.francoisbari.facturefacile.persistence.models.Months
 import com.francoisbari.facturefacile.databinding.FragmentMainBinding
 import com.francoisbari.facturefacile.ui.contributions.ContributionsFragment
 import com.francoisbari.facturefacile.viewmodels.MainViewModel

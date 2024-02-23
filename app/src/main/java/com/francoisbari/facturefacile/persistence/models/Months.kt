@@ -1,4 +1,4 @@
-package com.francoisbari.facturefacile.data.models
+package com.francoisbari.facturefacile.persistence.models
 
 enum class Months(val id: Int, val stringValue: String) {
     JANUARY(1, "Janvier"),
