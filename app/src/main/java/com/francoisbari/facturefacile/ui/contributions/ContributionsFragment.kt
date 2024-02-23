@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.francoisbari.facturefacile.databinding.FragmentContributionsBinding
-import com.francoisbari.facturefacile.viewmodels.MainViewModel
+import com.francoisbari.facturefacile.viewmodels.ContributionsViewModel
 
 class ContributionsFragment : Fragment() {
 
-    private val viewModel: MainViewModel by viewModels({ requireParentFragment() })
+    private val viewModel: ContributionsViewModel by viewModels({ requireParentFragment() })
     private var _binding: FragmentContributionsBinding? = null
     private val binding get() = _binding!!
 
@@ -21,6 +21,7 @@ class ContributionsFragment : Fragment() {
         _binding = FragmentContributionsBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
+        viewModel.computeContributions()
         return binding.root
     }
 

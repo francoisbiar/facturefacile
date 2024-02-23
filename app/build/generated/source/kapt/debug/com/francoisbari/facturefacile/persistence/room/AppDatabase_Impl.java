@@ -96,7 +96,7 @@ public final class AppDatabase_Impl extends AppDatabase {
         final TableInfo _infoUserInputEntity = new TableInfo("UserInputEntity", _columnsUserInputEntity, _foreignKeysUserInputEntity, _indicesUserInputEntity);
         final TableInfo _existingUserInputEntity = TableInfo.read(db, "UserInputEntity");
         if (!_infoUserInputEntity.equals(_existingUserInputEntity)) {
-          return new RoomOpenHelper.ValidationResult(false, "UserInputEntity(com.francoisbari.facturefacile.data.room.UserInputEntity).\n"
+          return new RoomOpenHelper.ValidationResult(false, "UserInputEntity(com.francoisbari.facturefacile.persistence.room.UserInputEntity).\n"
                   + " Expected:\n" + _infoUserInputEntity + "\n"
                   + " Found:\n" + _existingUserInputEntity);
         }
