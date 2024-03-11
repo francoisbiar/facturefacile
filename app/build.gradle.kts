@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.gms.google-services")
-    id ("kotlin-kapt")
+    id("kotlin-kapt")
 }
 
 android {
@@ -61,6 +61,12 @@ dependencies {
 
     // Coroutines
     implementation("androidx.core:core-ktx:1.12.0")
+
+    // For Retrofit integration
+    val retrofitVersion = "2.9.0"
+    implementation("com.squareup.retrofit2:retrofit:$retrofitVersion")
+    implementation("com.squareup.retrofit2:converter-moshi:$retrofitVersion")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
 
     // Standard libraries
     implementation("androidx.appcompat:appcompat:1.6.1")

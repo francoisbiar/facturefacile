@@ -24,7 +24,6 @@ class ContributionsFragment : Fragment() {
         _binding = FragmentContributionsBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        viewModel.computeContributions()
         return binding.root
     }
 

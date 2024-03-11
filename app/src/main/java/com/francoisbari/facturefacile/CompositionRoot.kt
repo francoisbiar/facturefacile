@@ -5,6 +5,7 @@ import android.content.Context
 import androidx.lifecycle.ViewModelProvider
 import com.francoisbari.facturefacile.persistence.DataPersistence
 import com.francoisbari.facturefacile.persistence.DataPersistenceFactory
+import com.francoisbari.facturefacile.remote.UrssafConnector
 import com.francoisbari.facturefacile.viewmodels.ContributionCalculator
 import com.francoisbari.facturefacile.viewmodels.ContributionsViewModelFactory
 import com.francoisbari.facturefacile.viewmodels.MainViewModelFactory
