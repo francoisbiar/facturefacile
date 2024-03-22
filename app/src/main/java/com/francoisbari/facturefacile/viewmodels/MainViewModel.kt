@@ -16,11 +16,12 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
     val nbOfDaysLiveData = MutableLiveData<String>()
     val tjmLiveData = MutableLiveData<String>()
     val yearlyTotalLiveData = dataPersistence.getYearlyTotalLiveData()
+    val chargesLiveData = MutableLiveData<String>()
 
     private var currentMonth = Months.NONE
 
     init {
-        loadData()
+        loadMonthlyData()
     }
 
     fun addOneDayClicked() {
@@ -28,7 +29,7 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
         nbOfDaysLiveData.value = (currentDays + 1).toString()
     }
 
-    private fun loadData() {
+    private fun loadMonthlyData() {
         viewModelScope.launch(Dispatchers.IO) {
             val storedInfos = dataPersistence.loadLatestMonth() ?: return@launch
             nbOfDaysLiveData.postValue(storedInfos.nbOfDays.toString())
@@ -37,7 +38,7 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
         }
     }
 
-    private fun saveData() {
+    private fun saveMonthlyData() {
         val infosToStore = UserInputData(
             nbOfDays = nbOfDaysLiveData.value?.toIntOrNull() ?: 0,
             tjm = tjmLiveData.value?.toIntOrNull() ?: 0,
@@ -50,7 +51,7 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
         addSource(nbOfDaysLiveData) { value = computeTotal() }
         addSource(tjmLiveData) { value = computeTotal() }
         // Save the data each time total is computed.
-        addSource(this) { saveData() }
+        addSource(this) { saveMonthlyData() }
     }
 
     private fun computeTotal(): Int {

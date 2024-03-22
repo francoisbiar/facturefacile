@@ -11,4 +11,5 @@
     <string name="totalMonthTitle">Total du mois</string>
     <string name="totalYearTitle">Total de l\'année</string>
     <string name="totalContributionsTitleTextView">Contributions de l\'année</string>
+    <string name="yearlyChargesTitle">Charges de l\'année</string>
 </resources>
