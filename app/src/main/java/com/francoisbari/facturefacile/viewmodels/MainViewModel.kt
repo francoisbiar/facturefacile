@@ -21,7 +21,7 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
 
     private val _computeContributionsClicked = MutableLiveData<Boolean>()
     val computeContributionsLiveData: LiveData<Boolean> = _computeContributionsClicked
-    val totalContributionsLiveData = MutableLiveData<Int>()
+    private val totalContributionsLiveData = MutableLiveData<Int>()
 
     init {
         loadData()

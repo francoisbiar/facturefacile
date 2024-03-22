@@ -2,10 +2,12 @@
     <string name="app_name">Facture Facile</string>
     <string name="nbOfDaysWorkedTitle">Nombre de jours travaillés</string>
     <string name="tjmTitle">TJM</string>
-    <string name="totalTitle">Total : %d € HT</string>
-    <string name="grandTotalTitle">Total de l\'année : %d € HT</string>
+    <string name="totalTitle">%d € HT</string>
+    <string name="grandTotalTitle">%d € HT</string>
     <string name="addOneDayButtonText">Ajouter un jour</string>
     <string name="total_contributions_d">Total contributions : %d€</string>
     <string name="computeContributionsButtonText">Calculer les cotisations</string>
     <string name="monthTitle">Mois</string>
+    <string name="totalMonthTitle">Total du mois</string>
+    <string name="totalYearTitle">Total de l\'année</string>
 </resources>
