@@ -5,9 +5,10 @@
     <string name="totalTitle">%d € HT</string>
     <string name="grandTotalTitle">%d € HT</string>
     <string name="addOneDayButtonText">Ajouter un jour</string>
-    <string name="total_contributions_d">Total contributions : %d€</string>
+    <string name="total_contributions_d">%d€</string>
     <string name="computeContributionsButtonText">Calculer les cotisations</string>
     <string name="monthTitle">Mois</string>
     <string name="totalMonthTitle">Total du mois</string>
     <string name="totalYearTitle">Total de l\'année</string>
+    <string name="totalContributionsTitleTextView">Contributions de l\'année</string>
 </resources>

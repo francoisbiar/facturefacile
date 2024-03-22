@@ -23,4 +23,8 @@ interface RoomDataDao {
 
     @Query("SELECT SUM(tjm * nbOfDays) FROM UserInputEntity")
     fun getYearlyTotal(): LiveData<Int>
+
+    @Query("SELECT SUM(tjm * nbOfDays) FROM UserInputEntity")
+    fun getYearlyTotalValue(): Int
+
 }

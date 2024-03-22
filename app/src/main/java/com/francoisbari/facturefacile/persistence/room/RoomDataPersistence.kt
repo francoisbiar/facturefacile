@@ -50,6 +50,10 @@ class RoomDataPersistence(context: Context) : DataPersistence {
         return database.userInputDao().getYearlyTotal()
     }
 
+    override suspend fun getYearlyTotal(): Int {
+        return database.userInputDao().getYearlyTotalValue()
+    }
+
     companion object {
         private const val DATABASE_NAME = "RoomDataPersistence"
     }

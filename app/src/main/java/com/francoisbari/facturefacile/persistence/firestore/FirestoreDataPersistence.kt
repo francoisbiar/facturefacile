@@ -28,6 +28,10 @@ class FirestoreDataPersistence(private val db: FirebaseFirestore) : DataPersiste
         TODO("Not yet implemented")
     }
 
+    override suspend fun getYearlyTotal(): Int {
+        TODO("Not yet implemented")
+    }
+
     companion object {
         private const val TAG = "FirestoreDataPersistenc"
     }

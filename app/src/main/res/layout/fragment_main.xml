@@ -23,7 +23,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_centerInParent="true"
-            android:layout_margin="8dp">
+            android:layout_margin="2dp"
+            app:contentPadding="8dp">
 
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,7 +38,6 @@
                     style="@style/MaterialAlertDialog.Material3.Title.Text"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
                     android:text="2024"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -60,7 +60,6 @@
                     android:id="@+id/linearLayoutNbOfDays"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
                     android:gravity="center"
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -90,7 +89,6 @@
                     android:id="@+id/linearLayoutTjm"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
                     android:gravity="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -119,7 +117,6 @@
                     android:id="@+id/totalMonthContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="8dp"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/linearLayoutTjm">
@@ -143,7 +140,6 @@
                     android:id="@+id/totalYearContainer"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_margin="8dp"
                     android:orientation="horizontal"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/totalMonthContainer">
@@ -170,26 +166,15 @@
 
                 <Button
                     android:id="@+id/addOneDayButton"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
                     android:onClick="@{() -> viewModel.addOneDayClicked()}"
                     android:text="@string/addOneDayButtonText"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/computeContributionsButton"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/totalYearContainer" />
 
-
-                <Button
-                    android:id="@+id/computeContributionsButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:onClickListener="@{() -> viewModel.computeContributionsClicked()}"
-                    android:text="@string/computeContributionsButtonText"
-                    app:layout_constraintBottom_toBottomOf="@+id/addOneDayButton"
-                    app:layout_constraintEnd_toStartOf="@id/addOneDayButton"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/addOneDayButton" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
@@ -201,8 +186,9 @@
             android:layout_below="@id/mainContainer"
             android:layout_alignParentStart="true"
             android:layout_alignParentEnd="true"
-            android:layout_margin="8dp"
-            android:visibility="gone"
+            android:layout_margin="2dp"
+            app:contentPadding="8dp"
+            android:visibility="visible"
             tools:visibility="visible">
 
             <androidx.fragment.app.FragmentContainerView

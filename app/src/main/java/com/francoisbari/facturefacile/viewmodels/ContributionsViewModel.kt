@@ -1,9 +1,8 @@
 package com.francoisbari.facturefacile.viewmodels
 
-import androidx.lifecycle.MediatorLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.map
 import androidx.lifecycle.viewModelScope
 import com.francoisbari.facturefacile.persistence.DataPersistence
 import kotlinx.coroutines.Dispatchers
@@ -14,22 +13,12 @@ class ContributionsViewModel(
     private val dataPersistence: DataPersistence
 ) : ViewModel() {
     val isLoading = MutableLiveData<Boolean>()
-    private val _totalContributionsLiveData = MediatorLiveData<Int?>()
-    val totalContributionsLiveData = _totalContributionsLiveData.map { it ?: 0 }
+    private val _totalContributionsLiveData = MutableLiveData(0)
+    val totalContributionsLiveData: LiveData<Int> = _totalContributionsLiveData
 
-    init {
-        _totalContributionsLiveData.addSource(dataPersistence.getYearlyTotalLiveData()) {
-            if (it >= 0) {
-                computeContributions(it)
-            } else {
-                _totalContributionsLiveData.value = null
-            }
-        }
-    }
-
-
-    private fun computeContributions(totalAmountEarned: Int) {
+    fun computeContributionsClicked() {
         viewModelScope.launch(Dispatchers.IO) {
+            val totalAmountEarned = dataPersistence.getYearlyTotal()
             isLoading.postValue(true)
             val totalAmount = contributionsCalculator.getContributions(totalAmountEarned)
             _totalContributionsLiveData.postValue(totalAmount)

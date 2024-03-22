@@ -19,10 +19,6 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
 
     private var currentMonth = Months.NONE
 
-    private val _computeContributionsClicked = MutableLiveData<Boolean>()
-    val computeContributionsLiveData: LiveData<Boolean> = _computeContributionsClicked
-    private val totalContributionsLiveData = MutableLiveData<Int>()
-
     init {
         loadData()
     }
@@ -61,14 +57,6 @@ class MainViewModel(private val dataPersistence: DataPersistence) : ViewModel() 
         val nbOfDays = nbOfDaysLiveData.value?.toIntOrNull() ?: 0
         val tjm = tjmLiveData.value?.toIntOrNull() ?: 0
         return nbOfDays * tjm
-    }
-
-    fun computeContributionsClicked() {
-        if (nbOfDaysLiveData.value.isNullOrBlank() || tjmLiveData.value.isNullOrBlank()) return
-        _computeContributionsClicked.value = true
-        val totalEarned = totalLiveData.value ?: 0
-        val totalContributions = totalEarned * 0.22 // TODO
-        totalContributionsLiveData.value = totalContributions.toInt()
     }
 
     fun selectMonth(month: String) {

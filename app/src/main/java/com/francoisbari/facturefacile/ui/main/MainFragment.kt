@@ -8,12 +8,10 @@ import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.francoisbari.facturefacile.CompositionRoot
-import com.francoisbari.facturefacile.persistence.DataPersistenceFactory
-import com.francoisbari.facturefacile.persistence.models.Months
 import com.francoisbari.facturefacile.databinding.FragmentMainBinding
+import com.francoisbari.facturefacile.persistence.models.Months
 import com.francoisbari.facturefacile.ui.contributions.ContributionsFragment
 import com.francoisbari.facturefacile.viewmodels.MainViewModel
-import com.francoisbari.facturefacile.viewmodels.MainViewModelFactory
 
 class MainFragment : Fragment() {
 
@@ -33,18 +31,12 @@ class MainFragment : Fragment() {
         _binding = FragmentMainBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
-        viewModel.computeContributionsLiveData.observe(viewLifecycleOwner) {
-            if (it) {
-                // Show the ContributionsFragment
-                val contributionsFragment = ContributionsFragment.newInstance()
-                binding.contributionsCardView.visibility = View.VISIBLE
-                childFragmentManager.beginTransaction().apply {
-                    replace(binding.contributionsContainerView.id, contributionsFragment)
-                    addToBackStack(null)
-                    commit()
-
-                }
-            }
+        // Show the ContributionsFragment
+        val contributionsFragment = ContributionsFragment.newInstance()
+        childFragmentManager.beginTransaction().apply {
+            replace(binding.contributionsContainerView.id, contributionsFragment)
+            addToBackStack(null)
+            commit()
         }
 
         setupSpinner()

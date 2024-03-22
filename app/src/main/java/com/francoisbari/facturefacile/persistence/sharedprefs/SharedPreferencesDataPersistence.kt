@@ -36,4 +36,8 @@ class SharedPreferencesDataPersistence(private val context: Context) : DataPersi
     override fun getYearlyTotalLiveData(): LiveData<Int> {
         TODO("Not yet implemented")
     }
+
+    override suspend fun getYearlyTotal(): Int {
+        TODO("Not yet implemented")
+    }
 }
