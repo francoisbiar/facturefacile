@@ -9,13 +9,13 @@
 
         <variable
             name="viewModel"
-            type="com.francoisbari.facturefacile.viewmodels.ContributionsViewModel" />
+            type="com.francoisbari.facturefacile.presentation.viewmodels.ContributionsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.contributions.ContributionsFragment">
+        tools:context=".presentation.ui.contributions.ContributionsFragment">
 
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/circularProgressIndicator"

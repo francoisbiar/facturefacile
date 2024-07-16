@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.francoisbari.facturefacile.viewmodels.MainViewModel" />
+            type="com.francoisbari.facturefacile.presentation.viewmodels.MainViewModel" />
     </data>
 
     <ScrollView
@@ -36,14 +36,13 @@
                     android:id="@+id/main"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    tools:context=".ui.main.MainFragment">
+                    tools:context=".presentation.ui.main.MainFragment">
 
-                    <TextView
-                        android:id="@+id/monthTextView"
-                        style="@style/MaterialAlertDialog.Material3.Title.Text"
+                    <Spinner
+                        android:id="@+id/yearSpinner"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="2024"
+                        android:onItemSelected="@{(parent, view, position, id) -> viewModel.selectYear(parent.getItemAtPosition(position).toString())}"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -54,11 +53,11 @@
                         android:layout_height="wrap_content"
                         android:onItemSelected="@{(parent, view, position, id) -> viewModel.selectMonth(parent.getItemAtPosition(position).toString())}"
                         app:flow_horizontalBias="1.0"
-                        app:layout_constraintBottom_toBottomOf="@id/monthTextView"
+                        app:layout_constraintBottom_toBottomOf="@id/yearSpinner"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintHorizontal_bias="1.0"
-                        app:layout_constraintStart_toEndOf="@id/monthTextView"
-                        app:layout_constraintTop_toTopOf="@id/monthTextView" />
+                        app:layout_constraintStart_toEndOf="@id/yearSpinner"
+                        app:layout_constraintTop_toTopOf="@id/yearSpinner" />
 
 
                     <LinearLayout
@@ -70,7 +69,7 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
 
-                        app:layout_constraintTop_toBottomOf="@id/monthTextView">
+                        app:layout_constraintTop_toBottomOf="@id/yearSpinner">
 
                         <TextView
                             android:id="@+id/textViewNbOfDaysTitle"
@@ -219,7 +218,10 @@
                 android:layout_below="@id/mainContainer"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
-                android:layout_margin="2dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginEnd="2dp"
+                android:layout_marginBottom="2dp"
                 android:visibility="visible"
                 app:contentPadding="8dp"
                 tools:visibility="visible">
